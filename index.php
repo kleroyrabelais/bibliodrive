@@ -15,20 +15,42 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-9">
-					barre de recherche (include)
+            <?php
+            include ('entete.html');
+            ?>
 			</div>
 			<div class="col-sm-3">
 					image Moulinsart
 			</div>
-		</div class="row">
-		   <div class="col-sm-9">
+		    <div class="row">
+		        <div class="col-sm-9">
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="./images-couvertures/covers/1984.jpg" class="d-block w-25" alt="1984">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="./images-couvertures/covers/Emma.jpg" class="d-block w-25" alt="Emma">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="./images-couvertures/covers/hamlet.jpg" class="d-block w-25" alt="hamlet">
+                            </div>
+                        </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    </div>
 					carroussel / résultat de la recherche / pages d'admin (ajout d'un livre)
-			</div>
-			<div class="col-sm-3">
+			    </div>
+			        <div class="col-sm-3">
 					formulaire de connexion / profil connecté (include)
-			</div>
-		</div>
-	</div>
+			    </div>
+		    </div>
+	    </div>
 	</body>
-
 </html>
