@@ -1,0 +1,59 @@
+<!ELEMENT rss (channel)>
+
+<!ATTLIST rss version CDATA #FIXED "2.0">
+
+ 
+
+<!-- A channel can apparently either have one or more items,
+
+     or just a title, link, and description of its own -->
+
+ 
+
+<!ELEMENT channel ((item+)|
+
+                   (title,link,description,(language|copyright|
+
+                    webMaster|pubDate|category|image)*))>
+
+ 
+
+<!ELEMENT item ((title|description)+,link?,
+
+                (author|category|comments|enclosure|guid|pubDate)*)>
+
+ 
+
+<!ELEMENT author (#PCDATA)>
+
+<!ELEMENT category (#PCDATA)>
+
+<!ATTLIST category domain CDATA #IMPLIED>
+
+<!ELEMENT comments (#PCDATA)>
+
+<!ELEMENT description (#PCDATA)>
+
+<!ELEMENT enclosure (#PCDATA)>
+
+<!ATTLIST enclosure url CDATA #REQUIRED
+
+                    length CDATA #REQUIRED
+
+                    type CDATA #REQUIRED>
+
+<!ELEMENT guid (#PCDATA)>
+
+<!ATTLIST guid isPermaLink (true|false) "true">
+
+<!ELEMENT image (url,title,link,(width|height|description)*)>
+
+<!ELEMENT language (#PCDATA)>
+
+<!ELEMENT link (#PCDATA)>
+
+<!ELEMENT pubDate (#PCDATA)>
+
+<!ELEMENT title (#PCDATA)>
+
+<!ELEMENT webMaster (#PCDATA)>
