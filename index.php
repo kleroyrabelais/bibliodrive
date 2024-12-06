@@ -20,11 +20,11 @@
             ?>
 			</div>
 			<div class="col-sm-3">
-					image Moulinsart
+					<img src="image-entete.png" alt=entete width=450>
 			</div>
 		    <div class="row">
 		        <div class="col-sm-9">
-                    <div id="carouselExample" class="carousel slide">
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="./images-couvertures/covers/1984.jpg" class="d-block w-25" alt="1984">
@@ -47,7 +47,9 @@
                     </div>
 					carroussel / résultat de la recherche / pages d'admin (ajout d'un livre)
 			    </div>
-			        <div class="col-sm-3">
+                <?php
+                include ('authetificathion.html')
+                ?>
 					formulaire de connexion / profil connecté (include)
 			    </div>
 		    </div>
