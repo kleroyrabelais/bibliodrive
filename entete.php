@@ -1,15 +1,17 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">home</a>
+      <a class="navbar-brand" href="#">Page d'acceuil</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
       aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="d-flex" role="search" action="">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit" name="recherche">Search</button>
+        <form class="recherche" role="search" method="GET">
+          <input class="form-control me-2" type="search" placeholder="Rechercher des livres" aria-label="Search" value="Slivre">
         </form>
       </div>
     </div>
   </nav>
+  <?php
+  require_once ('lister_livres.php')
+  ?>
