@@ -21,7 +21,10 @@
 			</div>
 			<div class="col-sm-3">
 					<img src="image-entete.png" alt=entete width=450>
+                    <br>
+                    <br>
                     <?php
+                    
                         include ('authentification.php')
                      ?>
 			</div>
