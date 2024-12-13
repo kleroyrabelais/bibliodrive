@@ -14,5 +14,4 @@
   </nav>
   <?php
   require_once ('lister_livres.php');
-  $SLivre = $_GET['SLivre'];
   ?>

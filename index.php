@@ -21,6 +21,9 @@
 			</div>
 			<div class="col-sm-3">
 					<img src="image-entete.png" alt=entete width=450>
+                    <?php
+                        include ('authentification.php')
+                     ?>
 			</div>
 		    <div class="row">
 		        <div class="col-sm-9">
@@ -47,9 +50,6 @@
                     </div>
 					carroussel / résultat de la recherche / pages d'admin (ajout d'un livre)
 			    </div>
-                <?php
-                include ('authetificathion.html')
-                ?>
 					formulaire de connexion / profil connecté (include)
 			    </div>
 		    </div>
