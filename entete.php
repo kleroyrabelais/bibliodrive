@@ -10,8 +10,6 @@
           <input class="form-control me-2" type="search" placeholder="Rechercher des livres" aria-label="Search" value="">
         </form>
       </div>
+      <a class="btn btn-primary" href="panier.php">panier</a>
     </div>
-  </nav>
-  <?php
-  require_once ('lister_livres.php');
-  ?>
+</nav>
