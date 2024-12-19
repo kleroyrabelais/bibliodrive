@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
+<img src="image-entete.png" alt=entete width=450>
 <?php
 
 if (!isset($_POST['btnSeConnecter'])) { 
