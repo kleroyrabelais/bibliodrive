@@ -50,12 +50,12 @@ $x = 0;
   while($enregistrement = $stmt->fetch()){
     if ($x == 0) { 
        echo '<div class="item active">
-      <img src="covers/'.$enregistrement->photo.'" alt="Image1" width="300" height="500">
+      <img src="covers/'.$enregistrement->photo.'" alt="Image1" width="100" height="200">
       </div>';
       $x += 1;
     } else { 
         echo '<div class="item">
-        <img src="covers/'.$enregistrement->photo.'" alt="Image1" width="300" height="500">
+        <img src="covers/'.$enregistrement->photo.'" alt="Image1" width="100" height="200">
       </div>';
     }
   }
