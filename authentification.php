@@ -16,7 +16,7 @@ if (!isset($_POST['btnSeConnecter'])) {
         </div>
         <br>
         <div>
-        <button type="submit" class="btn btn-primary" name="btnSeConnecter">Submit</button>
+        <button type="submit" class="btn btn-primary" name="btnSeConnecter">Se connecter</button>
         </div>
     </form>';
 } else {
