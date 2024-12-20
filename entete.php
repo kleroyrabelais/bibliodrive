@@ -35,40 +35,42 @@ try {
         $stmt ->setFetchMode(PDO::FETCH_OBJ);
         $stmt ->execute();
 
-
-         echo '<div align="center">';
-         echo '<div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-
-  <div class="carousel-inner">';
-$x = 0; 
-  while($enregistrement = $stmt->fetch()){
-    if ($x == 0) { 
-       echo '<div class="item active">
-      <img src="covers/'.$enregistrement->photo.'" alt="Image1" width="100" height="200">
-      </div>';
-      $x += 1;
-    } else { 
-        echo '<div class="item">
-        <img src="covers/'.$enregistrement->photo.'" alt="Image1" width="100" height="200">
-      </div>';
-    }
-  }
-
- 
-  echo '<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>';
+echo'
+        <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+        <div class="carousel-inner">
+          <div class="carousel-item active">';
+           $x=0;
+            while($enregistrement = $stmt->fetch()){
+              if ($x ==0) {
+                echo'<div class="item active">
+                <img src="covers'.$enregistrement->photo.'"alt=image="imagecarousel" width="100" height="200">
+                </div>';
+                $x += 1;
+              }
+              else {
+                echo '<div class="item">
+                <img src="covers"'.$enregistrement->photo.'"alt="imagecarousel" width=100" height="200">
+                </div>';
+              }
+            }
+          echo'
+            <img src="..." class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>'
          
       ?>
