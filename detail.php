@@ -44,7 +44,7 @@ if (isset($_GET["Auteur"]) && !empty($_GET["Auteur"])) {
             echo "</div><hr>";
         }
     }
-    
+}    
 ?>
 
 
