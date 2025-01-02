@@ -10,53 +10,74 @@
 <body>
 <?php
 require_once('connexion.php');
-$stmt = $connexion->prepare("SELECT nom, prenom, dateretour, detail, isbn13, anneeparution, photo, titre FROM livre INNER JOIN auteur ON (livre.noauteur = auteur.noauteur) LEFT OUTER JOIN emprunter ON (livre.nolivre = emprunter.nolivre) where livre.nolivre=:nolivre");
-$nolivre = $_GET["nolivre"];
-$stmt->bindValue(":nolivre", $nolivre); // pas de troisième paramètre STR par défaut
-$stmt->setFetchMode(PDO::FETCH_OBJ);
-// Les résultats retournés par la requête seront traités en 'mode' objet
-$stmt->execute();
-$enregistrement = $stmt->fetch();
+
+if (isset($_GET["Auteur"]) && !empty($_GET["Auteur"])) {
+    $auteur = $_GET["Auteur"];
+    
+    // Préparation de la requête pour récupérer les livres de l'auteur
+    $stmt = $connexion->prepare("
+        SELECT isbn13, titre, anneeparution, detail, photo, nom, prenom 
+        FROM livre 
+        INNER JOIN auteur ON livre.noauteur = auteur.noauteur 
+        WHERE auteur.nom LIKE :auteur OR auteur.prenom LIKE :auteur
+    ");
+    $stmt->bindValue(":auteur", "%" . $auteur . "%", PDO::PARAM_STR);
+    $stmt->setFetchMode(PDO::FETCH_OBJ);
+    $stmt->execute();
+    
+    $livres = $stmt->fetchAll();
+
+    if (!$livres) {
+        echo "<p>Aucun livre trouvé pour l'auteur '" . $auteur . "'.</p>";
+    } else {
+        echo "<h1>Livres de " . $auteur . "</h1>";
+        foreach ($livres as $livre) {
+            echo "<div class='livre'>";
+            echo "<h2>" . $livre->titre . " (" . $livre->anneeparution . ")</h2>";
+            echo "<p>Auteur : " . $livre->prenom . " " . $livre->nom . "</p>";
+            echo "<p>ISBN13 : " . $livre->isbn13 . "</p>";
+            echo "<p>" . $livre->detail . "</p>";
+            if (!empty($livre->photo)) {
+                echo "<img src='./covers/" . $livre->photo . "' alt='Image de couverture' style='max-width:300px;'>";
+            }
+            echo "<a href='pagedetail.php?nolivre=" . $livre->isbn13 . "' class='btn btn-primary'>Voir les détails</a>";
+            echo "</div><hr>";
+        }
+    }
+    
 ?>
+
+
 <div class="row">
 <div class="col-sm-8">
 <?php
-echo "ISBN13 : ".$enregistrement->isbn13; 
-echo "<br>";
-echo "Auteur : ".$enregistrement->prenom." ", $enregistrement->nom;
-echo "Titre : ".$enregistrement->titre." ", $enregistrement->anneeparution;
-echo "<br>";
-echo "<br>";
-echo "Résumé du livre :";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo $enregistrement->detail;
 
 ?>
 </div>
 <div class="col-sm-4">
-<img src="./images/<?php echo $enregistrement->photo; ?>" class="d-block w-100" alt="Image de couverture">
+
 </div>
+
 <?php
-if (isset($_SESSION["prenom"]))
-{
-  echo '<form method="POST">';
-  echo '<input type="submit" name="btn-ajoutpanier" class="btn btn-success btn-lg" value="Ajouter au panier"></input>';
-  echo '</form>';
-}else{
-  echo '<p class="text-primary">Pour pouvoir réserver ce livre vous devez posséder un compte et vous identifier !</p>';
-}
+if (isset($enregistrement) && $enregistrement !== null) {
+    if (isset($_SESSION["prenom"])) {
+        echo '<form method="POST">';
+        echo '<input type="submit" name="btn-ajoutpanier" class="btn btn-success btn-lg" value="Ajouter au panier"></input>';
+        echo '</form>';
+    } else {
+        echo '<p class="text-primary">Pour pouvoir réserver ce livre, vous devez posséder un compte et vous identifier !</p>';
+    }
 
-if(!isset($_SESSION['panier'])){
-// Initialisation du panier
-$_SESSION['panier'] = array();
-}
+    if (!isset($_SESSION['panier'])) {
+        $_SESSION['panier'] = array();
+    }
 
-// On ajoute les entrées dans le tableau
-if(isset($_POST['btn-ajoutpanier'])){
-array_push($_SESSION['panier'], $enregistrement->titre);  
-echo "Livre ajouté à votre panier :)";
+    if (isset($_POST['btn-ajoutpanier'])) {
+        array_push($_SESSION['panier'], $enregistrement->titre);
+        echo "Livre ajouté à votre panier :)";
+    }
+} else {
+    echo '<p>Aucun livre à ajouter au panier.</p>';
 }
 ?>
 </div>

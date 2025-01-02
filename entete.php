@@ -19,8 +19,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="recherche" role="search" method="GET">
-          <input name="auteur" class="form-control me-2" type="search" placeholder="Rechercher des livres" aria-label="Search" value="">
+      <form class="d-flex" action="pagededetail.php" method="GET">
+            <input class="form-control me-2" type="text" placeholder="Entrer le nom d'un Auteur" name="Auteur" >
+            <button class="btn btn-light"  type="submit">rechercher</button>
         </form>
       </div>
       <a class="btn btn-primary" href="panier.php">panier</a>

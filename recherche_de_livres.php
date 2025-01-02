@@ -21,15 +21,24 @@
                 <?php
                     include ('navbar.php');
                     require_once('connexion.php');
-                        $stmt = $connexion->prepare("SELECT nolivre, titre, anneeparution FROM livre INNER JOIN auteur ON (livre.noauteur = auteur.noauteur) where auteur.nom=:nom ORDER BY anneeparution");
-                        $nom = $_GET["Auteur"];
-                        $stmt->bindValue(":nom", $nom); // pas de troisième paramètre STR par défaut
-                        $stmt->setFetchMode(PDO::FETCH_OBJ);
-                        $stmt->execute();
-                        while($enregistrement = $stmt->fetch())
-                        {
-                        echo '<h1>',"<a href='pagededetail.php?nolivre=".$enregistrement->nolivre."'>".$enregistrement->titre, ' ', ' ', '(', $enregistrement->anneeparution, ')', "</a>",'</h1>';
-                        }
+                    if (!isset($_GET['auteur']))
+                    
+                    $auteur = $_GET['auteur'];
+                    
+                    // Préparation de la requête pour récupérer les livres de l'auteur
+                    $stmt = $connexion->prepare("SELECT nolivre, titre FROM livre 
+                                                  INNER JOIN auteur ON livre.noauteur = auteur.noauteur 
+                                                  WHERE auteur.nom = :nom 
+                                                  ORDER BY titre");
+                    $stmt->bindValue(":nom", $auteur);
+                    $stmt->setFetchMode(PDO::FETCH_OBJ);
+                    $stmt->execute();
+                    
+                    echo "<h1>Livres de l'auteur : " . htmlspecialchars($auteur) . "</h1>";
+                    
+                    // Affiche les résultats sous forme de liens cliquables
+                    while ($livre = $stmt->fetch()) {
+                        echo "<p><a href='detail_livre.php?nolivre=" . $livre->nolivre . "'>" . htmlspecialchars($livre->titre) . "</a></p>";}
                 ?>
             </div>
             <div class="col-sm-3">
