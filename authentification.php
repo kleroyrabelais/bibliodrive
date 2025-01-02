@@ -32,15 +32,16 @@ if (!isset($_POST['btnSeConnecter'])) {
         $stmt->execute();
         $enregistrement = $stmt->fetch();
         if ($enregistrement) {
+            // Connexion réussie
+            session_start();  // Démarrage de la session
+            $_SESSION['mel'] = $mel;  // Enregistrement de l'email dans la session
             echo '<h1>Connexion réussie !</h1>';
         } else {
             echo "Echec à la connexion.";
         }
-    } else {
-        echo "Echec à la connexion.";
-    }
+        
 }
-
+}
 ?>
 
 </body>

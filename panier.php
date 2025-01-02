@@ -1,3 +1,3 @@
 <?php
-require_once('details_livre.php')
+require_once('detail_de_livres.php')
 ?>
