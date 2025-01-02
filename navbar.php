@@ -12,7 +12,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="recherche" role="search" method="GET">
-          <input class="form-control me-2" type="search" placeholder="Rechercher des livres" aria-label="Search" value="">
+          <input class="form-control me-2" type="search" placeholder="Rechercher des livres" aria-label="Search" value="" name="Auteur">
         </form>
       </div>
       <a class="btn btn-primary" href="panier.php">panier</a>
