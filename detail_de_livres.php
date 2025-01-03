@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <?php include_once('navbar.php'); ?>
+            <?php require_once('navbar.php'); ?>
         </div>
         <div class="col-sm-3">
             <?php 
-                include('connexion.php');
-                include('authentification.php');
+                require_once('connexion.php');
+                require_once('authentification.php');
             ?>
         </div>
     </div>

@@ -21,30 +21,35 @@
                 <?php
                     include ('navbar.php');
                     require_once('connexion.php');
-                    if (!isset($_GET['auteur']))
                     
-                    $auteur = $_GET['auteur'];
-                    
-                    // Préparation de la requête pour récupérer les livres de l'auteur
-                    $stmt = $connexion->prepare("SELECT nolivre, titre FROM livre 
-                                                  INNER JOIN auteur ON livre.noauteur = auteur.noauteur 
-                                                  WHERE auteur.nom = :nom 
-                                                  ORDER BY titre");
-                    $stmt->bindValue(":nom", $auteur);
-                    $stmt->setFetchMode(PDO::FETCH_OBJ);
-                    $stmt->execute();
-                    
-                    echo "<h1>Livres de l'auteur : " . htmlspecialchars($auteur) . "</h1>";
-                    
-                    // Affiche les résultats sous forme de liens cliquables
-                    while ($livre = $stmt->fetch()) {
-                        echo "<p><a href='detail_livre.php?nolivre=" . $livre->nolivre . "'>" . htmlspecialchars($livre->titre) . "</a></p>";}
+                    // Vérifie si l'auteur est passé dans l'URL
+                    if (isset($_GET['auteur'])) {
+                        $auteur = $_GET['auteur'];
+
+                        // Préparation de la requête pour récupérer les livres de l'auteur
+                        $stmt = $connexion->prepare("SELECT nolivre, titre FROM livre 
+                                                      INNER JOIN auteur ON livre.noauteur = auteur.noauteur 
+                                                      WHERE auteur.nom = :nom 
+                                                      ORDER BY titre");
+                        $stmt->bindValue(":nom", $auteur);
+                        $stmt->setFetchMode(PDO::FETCH_OBJ);
+                        $stmt->execute();
+
+                        echo "<h1>Livres de l'auteur : " . $auteur . "</h1>";
+
+                        // Affiche les résultats sous forme de liens cliquables
+                        while ($livre = $stmt->fetch()) {
+                            echo "<p><a href='detail_livre.php?nolivre=" . $livre->nolivre . "'>" . $livre->titre . "</a></p>";
+                        }
+                    } else {
+                        echo "<p>Aucun auteur spécifié.</p>";
+                    }
                 ?>
             </div>
             <div class="col-sm-3">
-               <?php  
-               include ('authentification.php')   
-                     ?>
+                <?php  
+                    require_once ('authentification.php');
+                ?>
                 pages d'admin (ajout d'un livre)
             </div>
         </div>

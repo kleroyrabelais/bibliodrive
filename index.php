@@ -22,12 +22,12 @@ session_start();
         <div class="row">
             <div class="col-sm-9">
                 <?php
-            include ('entete.php');
+            require_once ('entete.php');
                 ?>
             </div>
             <div class="col-sm-3">
                <?php  
-               include ('authentification.php')   
+               require_once ('authentification.php')   
                      ?>
                 pages d'admin (ajout d'un livre)
             </div>
