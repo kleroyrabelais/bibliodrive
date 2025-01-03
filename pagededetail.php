@@ -23,13 +23,14 @@ if (session_status() === PHP_SESSION_NONE) {
             ?>
         </div>
         <div class="col-sm-3">
-            <?php 
-                if (isset($_SESSION['mel'])) {
-                    echo "<p>Vous êtes connecté en tant que : " . $_SESSION['mel'] . "</p>";
-                    echo '<a href="déconnexion.php" class="btn btn-danger">Déconnexion</a>';
-                } else {
-                    require_once 'authentification.php';
-                }                
+            <img src="image-entete.png" alt="entete" width="450">
+                <?php 
+                    if (isset($_SESSION['mel'])) {
+                        echo "<p>Vous êtes connecté en tant que : " . $_SESSION['mel'] . "</p>";
+                        echo '<a href="déconnexion.php" class="btn btn-danger">Déconnexion</a>';
+                    } else {
+                        require_once ('authentification.php');
+                    }                
             ?>
         </div>
     </div>
