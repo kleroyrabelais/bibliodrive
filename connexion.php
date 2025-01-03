@@ -1,4 +1,9 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+<?php
 try {
 
 $dns = 'mysql:host=localhost;dbname=mabibliodrive'; // dbname : nom de la base

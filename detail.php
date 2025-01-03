@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['mel'])) {
+    echo '<p class="text-primary">Pour pouvoir réserver, vous devez posséder un compte et vous identifier.</p>';
+    exit; //Arréte l'éxécution si l'utilisateur ne s'est pas connecté
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -50,37 +57,31 @@ require_once('connexion.php');
                         echo '<button type="submit" name="btn-reserver" class="btn btn-primary">Réserver le livre</button>';
                         echo '</form>';
 }                   else {
-                        echo '<p class="text-primary">Vous devez être connecté pour réserver ce livre.</p>';
+                        echo '<p class="text-primary">Pour pouvoir réserver vous devez posséder un compte et vous identifier.</p>';
 }
 
                 }
             }
         }
+        // Traitement du bouton Réserver
+        if (isset($_POST['btn-reserver'])) {
+            $isbn13 = $_POST['isbn13'];
+        
+            if (!isset($_SESSION['panier'])) {
+                $_SESSION['panier'] = array();
+            }
+        
+            if (!in_array($isbn13, $_SESSION['panier'])) {
+                $_SESSION['panier'][] = $isbn13;
+                echo '<p class="alert alert-success">Le livre avec ISBN13 ' . $isbn13 . ' a été réservé avec succès !</p>';
+            } else {
+                echo '<p class="alert alert-warning">Ce livre est déjà dans votre panier.</p>';
+            }
+        }
         ?>
     </div>
     <div class="col-sm-3">
-        <?php
-        // Logique pour afficher des éléments supplémentaires si nécessaire
-        ?>
     </div>
 </div>
-
-<?php
-// Traitement du bouton "Réserver le livre"
-if (isset($_POST['btn-reserver'])) {
-    $isbn13 = $_POST['isbn13'];
-
-    if (!isset($_SESSION['panier'])) {
-        $_SESSION['panier'] = array();
-    }
-
-    if (!in_array($isbn13, $_SESSION['panier'])) {
-        $_SESSION['panier'][] = $isbn13;
-        echo '<p class="alert alert-success">Le livre avec ISBN13 ' . $isbn13 . ' a été réservé avec succès !</p>';
-    } else {
-        echo '<p class="alert alert-warning">Ce livre est déjà dans votre panier.</p>';
-    }
-}
-?>
 </body>
 </html>
