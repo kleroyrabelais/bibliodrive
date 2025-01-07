@@ -43,6 +43,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <!-- image d'entete affichée ici, visible en tout temps -->
     <img src="image-entete.png" alt="entete" width="450">
+    <?php
+
+// recupère l'email de la session si elle n'existe pas, on utilise une chaîne vide
+$email = $_SESSION['mel'] ?? '';
+
+// Vérifie si l'email contient '@admin.fr'
+if (strpos($email, '@admin.fr') !== false) {
+    include 'creer_membre.html';
+    include 'ajouter_livre.html';
+}
+?>
 
     <!-- Formulaire de connexion et message de bienvenue -->
     <?php

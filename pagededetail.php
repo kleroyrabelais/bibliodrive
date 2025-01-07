@@ -23,9 +23,9 @@ if (session_status() === PHP_SESSION_NONE) {
             ?>
         </div>
         <div class="col-sm-3">
-            <img src="image-entete.png" alt="entete" width="450">
                 <?php 
                     if (isset($_SESSION['mel'])) {
+                        echo '<img src="image-entete.png" alt="entete" width="450">';
                         echo "<p>Vous êtes connecté en tant que : " . $_SESSION['mel'] . "</p>";
                         echo '<a href="déconnexion.php" class="btn btn-danger">Déconnexion</a>';
                     } else {

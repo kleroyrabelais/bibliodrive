@@ -29,7 +29,7 @@ session_start();
                <?php  
                require_once ('authentification.php')   
                      ?>
-                pages d'admin (ajout d'un livre)
+                pages d'admin (ajout d'un livre)&créer un membres
             </div>
         </div>
     </div>
