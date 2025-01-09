@@ -8,7 +8,7 @@
 while($enregistrement = $stmt->fetch())
 {
 
-  echo "<h1><a href='http://localhost/bibliodriveaxl/detaillivre.php?numero=".$enregistrement->nolivre."'>",$enregistrement->titre," (", $enregistrement->anneeparution, ")<br> <br> </a> </h1>" ; 
+  echo "<h1><a href='http://localhost/mabibliodrive/detaillivre.php?numero=".$enregistrement->nolivre."'>",$enregistrement->titre," (", $enregistrement->anneeparution, ")<br> <br> </a> </h1>" ; 
   
 }
 ;?>

@@ -5,14 +5,22 @@ if (isset($_GET["Auteur"]) && !empty($_GET["Auteur"])) {
     $auteur = $_GET["Auteur"];
     
     // Préparation de la requête pour récupérer les livres de l'auteur
-    $stmt = $connexion->prepare("
-        SELECT livre.isbn13, livre.titre, livre.anneeparution 
-        FROM livre 
-        JOIN auteur ON livre.noauteur = auteur.noauteur
-        WHERE CONCAT(auteur.nom, ' ', auteur.prenom) = ?
-    ");
-    $stmt->execute([$auteur]);
-    $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    try {
+        $stmt = $connexion->prepare(
+            "SELECT l.titre, l.isbn13, l.anneeparution 
+             FROM livre l 
+             INNER JOIN auteur a ON l.noauteur = a.noauteur 
+             WHERE a.nom = :auteur"
+        );
+        $stmt->bindValue(':auteur', $auteur);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        
+        $stmt->execute();
+        $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Erreur : " . $e->getMessage();
+        die();
+    }
 }
 ?>
 <!DOCTYPE html>

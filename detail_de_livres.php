@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-9">
             <?php require_once('navbar.php'); ?>
@@ -13,14 +13,6 @@
 </div>
 
 <?php
-// Vérification de l'existence du paramètre 'numero'
-if (!isset($_GET["numero"]) || empty($_GET["numero"])) {
-    echo "<p>Paramètre 'numero' manquant dans l'URL.</p>";
-    exit();
-}
-
-$numero = $_GET["numero"]; // Récupération du numéro depuis l'URL
-
 // Préparation de la requête pour récupérer toutes les informations nécessaires
 $stmt = $connexion->prepare("
     SELECT a.prenom, a.nom, l.isbn13, l.detail, l.photo, l.dateretour
@@ -34,10 +26,6 @@ $stmt->execute();
 
 $enregistrement = $stmt->fetch();
 
-if (!$enregistrement) {
-    echo "<p>Aucun livre trouvé pour le numéro donné.</p>";
-    exit();
-}
 
 // Affichage des détails du livre
 echo "Auteur : " . $enregistrement->prenom . " " . $enregistrement->nom . "<br><br>";

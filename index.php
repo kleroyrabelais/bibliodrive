@@ -28,8 +28,7 @@ session_start();
             <div class="col-sm-3">
                <?php  
                require_once ('authentification.php')   
-                     ?>
-                pages d'admin (ajout d'un livre)&créer un membres
+                ?>
             </div>
         </div>
     </div>

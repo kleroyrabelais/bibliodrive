@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <title>Site Rabelais</title>
+    <title>Recherche de livre dans la bibliodrive</title>
     <meta charset="utf-8">
     <!-- charset=UTF-8 : pour que les caractères accentués ressortent correctement -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@
 
                         echo "<h1>Livres de l'auteur : " . $auteur . "</h1>";
 
-                        // Affiche les résultats sous forme de liens cliquables
+                        
                         while ($livre = $stmt->fetch()) {
                             echo "<p><a href='detail_livre.php?nolivre=" . $livre->nolivre . "'>" . $livre->titre . "</a></p>";
                         }
@@ -50,7 +50,6 @@
                 <?php  
                     require_once ('authentification.php');
                 ?>
-                pages d'admin (ajout d'un livre)
             </div>
         </div>
     </div>
