@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-9">
                 <?php require_once 'navbar.php'; ?>
