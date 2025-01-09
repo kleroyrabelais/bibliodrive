@@ -18,6 +18,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="row">
             <div class="col-sm-9">
                 <?php require_once 'navbar.php'; ?>
+                <!-- Formulaire pour créer un membre et renvoie vers creer_membre_function -->
                 <form method="post" action="creer_membre_function.php">
                     <div class="form-group">
                         <label for="mel">Email:</label>

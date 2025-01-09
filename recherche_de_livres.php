@@ -37,7 +37,7 @@
 
                         echo "<h1>Livres de l'auteur : " . $auteur . "</h1>";
 
-                        
+                        // Affichage des livres de l'auteur
                         while ($livre = $stmt->fetch()) {
                             echo "<p><a href='detail_livre.php?nolivre=" . $livre->nolivre . "'>" . $livre->titre . "</a></p>";
                         }

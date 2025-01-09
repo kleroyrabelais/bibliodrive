@@ -1,5 +1,6 @@
 <?php
 // Initialiser les variables pour éviter les avertissements
+//traitment du formulaire de création de membre
 $mel = $motdepasse = $nom = $prenom = $adresse = $ville = $codepostal = $profil = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -1,6 +1,6 @@
 <?php
 include 'connexion.php';
-
+//Traitement du formulaire d'ajout de livre
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $noauteur = $_POST['noauteur'];

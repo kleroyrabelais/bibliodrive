@@ -1,3 +1,4 @@
+<!-- Formulaire d'ajout d'un livre et renvoie vers ajouter_livre_function -->
 <form action="ajouter_livre_function.php" method="post">
         <div class="mb-3">
           <label for="noauteur" class="form-label">Auteur:</label>

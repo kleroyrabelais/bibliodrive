@@ -38,7 +38,7 @@ if (isset($_GET["Auteur"]) && !empty($_GET["Auteur"])) {
         <div class="col-sm-9">
             <?php if (!empty($livres)): ?>
                 <ul>
-                    <?php foreach ($livres as $livre): ?>
+                    <?php foreach ($livres as $livre): //détails générale des livres?>
                         <li>
                             <a href="livre_detail.php?isbn13=<?= $livre['isbn13'] ?>">
                                 <?= $livre['titre'] ?> (<?= $livre['anneeparution'] ?>)

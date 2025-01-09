@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['isbn13']) && isset($_S
         } else {
             // Insérer la réservation dans la base de données
             $dateemprunt = date('Y-m-d');
-            $dateretour = date('Y-m-d', strtotime('+3 weeks'));
-
-            $stmt = $connexion->prepare(
+            $dateretour = date('Y-m-d', strtotime('+3 weeks')); //3semaines plus tard
+                //insérer la réservation dans la base de données
+            $stmt = $connexion->prepare( 
                 "INSERT INTO emprunter (mel, nolivre, dateemprunt, dateretour) 
                  VALUES (:mel, :nolivre, :dateemprunt, :dateretour)"
             );

@@ -1,4 +1,4 @@
-<?php
+<?php //Enlévd de la table emprunter une fois la date passée
 require_once 'connexion.php';
 
 try {
