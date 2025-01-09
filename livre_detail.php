@@ -56,7 +56,7 @@ if (isset($_GET['isbn13']) && !empty($_GET['isbn13'])) {
                     <p>Aucune image de couverture disponible.</p>
                 <?php endif; ?>
                 <?php if (isset($_SESSION['mel'])): ?>
-                    <?php if ($livre): ?>
+                    <?php if ($reservation): ?>
                         <p>Ce livre est actuellement indisponible.</p>
                     <?php else: ?>
                         <form method="post" action="reservation_livre.php">

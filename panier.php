@@ -54,6 +54,13 @@
                             </li>
                         <?php endforeach; ?>
                     </ul>
+                    <?php if (!isset($_GET['confirmed'])): ?>
+                        <form method="post" action="valider_panier.php">
+                            <button type="submit" class="btn btn-success">Valider panier (confirmer emprunt-réservation)</button>
+                        </form>
+                    <?php else: ?>
+                        <p>Votre panier a été confirmé.</p>
+                    <?php endif; ?>
                 <?php else: ?>
                     <p>Votre panier est vide.</p>
                 <?php endif; ?>
