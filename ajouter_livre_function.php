@@ -1,5 +1,4 @@
 <?php
-// Inclure le fichier de connexion
 include 'connexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindValue(':detail', $detail);
         $stmt->bindValue(':photo', $photo);
 
-        // Exécuter la requête
         if ($stmt->execute()) {
             echo "Nouveau livre ajouté avec succès";
         } else {
@@ -37,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ajouter_livre_page.php");
         exit; // s'assurer que le script se termine afin de ne pas exécuter plus
     } catch (PDOException $e) {
-        // Gérer les erreurs
         echo "Erreur : " . $e->getMessage();
     }
 }

@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ville = $_POST['ville'];
     $codepostal = $_POST['codepostal'];
 
-    // Inclure le fichier de connexion
     include 'connexion.php';
 
     // Vérifier si l'utilisateur est un admin ou un client
@@ -39,14 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindValue(":codepostal", $codepostal);
         $stmt->bindValue(":profil", $profil);
 
-        // Exécuter la requête
         $stmt->execute();
 
         // Redirection après le traitement du formulaire
         header("Location: creer_membre_page.php");
         exit; //s'assurer que le scipt se finisse afin de ne pas éxécuter plus
     } catch (PDOException $e) {
-        // Gérer les erreurs
+
         echo "Erreur : " . $e->getMessage();
     }
 }

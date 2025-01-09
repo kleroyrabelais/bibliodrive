@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
         $enregistrement = $stmt->fetch();
 
-        // Si un enregistrement est trouvé connecter l'utilisateur
+        // Enregistrer le mel de la session si l'utilisateur est trouvé
         if ($enregistrement) {
             $_SESSION['mel'] = $mel;  // Sauvegarde l'email dans la session
             header("Location: " . $_SERVER['PHP_SELF']);

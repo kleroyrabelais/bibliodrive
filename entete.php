@@ -33,16 +33,8 @@ if (session_status() === PHP_SESSION_NONE) {
 </nav>
 
 <?php
-// Code PHP pour la base de données ici
-try {
-    $dns = 'mysql:host=localhost;dbname=mabibliodrive'; // dbname : nom de la base
-    $utilisateur = 'root'; // root sur vos postes
-    $motDePasse = ''; // pas de mot de passe sur vos postes
-    $connexion = new PDO($dns, $utilisateur, $motDePasse);
-} catch (Exception $e) {
-    echo "Connexion à MySQL impossible : ", $e->getMessage();
-    die();
-}
+
+include 'connexion.php';
 
 // Récupérer les images pour le carousel
 $stmt = $connexion->prepare("SELECT photo FROM livre ORDER BY dateajout DESC LIMIT 3");
