@@ -1,44 +1,35 @@
 <?php
 require_once 'connexion.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['mel'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['mel']) && isset($_SESSION['panier'])) {
     $mel = $_SESSION['mel'];
+    $livres = $_SESSION['panier'];
 
-    // Récupérer les livres réservés par l'utilisateur
+    // Insérer les livres réservés dans la base de données
     try {
-        $stmt = $connexion->prepare(
-            "SELECT e.nolivre 
-             FROM emprunter e
-             WHERE e.mel = :mel"
-        );
-        $stmt->bindValue(':mel', $mel);
-        $stmt->execute();
-        $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($livres as $livre) {
+            // Définir les dates d'emprunt et de retour
+            $dateemprunt = date('Y-m-d');
+            $dateretour = date('Y-m-d', strtotime('+3 weeks'));
 
-        if (!empty($livres)) {
-            // Confirmer les emprunts-réservations
-            foreach ($livres as $livre) {
-                // Mettre à jour la table emprunter pour confirmer l'emprunt
-                $stmt = $connexion->prepare(
-                    "UPDATE emprunter 
-                     SET dateemprunt = :dateemprunt, dateretour = :dateretour 
-                     WHERE nolivre = :nolivre AND mel = :mel"
-                );
-                $dateemprunt = date('Y-m-d');
-                $dateretour = date('Y-m-d', strtotime('+3 weeks'));
-                $stmt->bindValue(':dateemprunt', $dateemprunt);
-                $stmt->bindValue(':dateretour', $dateretour);
-                $stmt->bindValue(':nolivre', $livre['nolivre']);
-                $stmt->bindValue(':mel', $mel);
-                $stmt->execute();
-            }
-
-            // Redirection vers la page panier
-            header("Location: panier.php?confirmed=true");
-            exit;
-        } else {
-            echo "Votre panier est vide.";
+            // Insérer la réservation dans la base de données
+            $stmt = $connexion->prepare(
+                "INSERT INTO emprunter (mel, nolivre, dateemprunt, dateretour) 
+                 VALUES (:mel, :nolivre, :dateemprunt, :dateretour)"
+            );
+            $stmt->bindValue(':mel', $mel);
+            $stmt->bindValue(':nolivre', $livre['nolivre']);
+            $stmt->bindValue(':dateemprunt', $dateemprunt);
+            $stmt->bindValue(':dateretour', $dateretour);
+            $stmt->execute();
         }
+
+        // Vider le panier de la session
+        unset($_SESSION['panier']);
+
+        // Redirection vers la page panier
+        header("Location: panier.php?confirmed=true");
+        exit;
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
         die();

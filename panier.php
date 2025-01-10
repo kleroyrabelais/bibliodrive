@@ -18,19 +18,8 @@
                     include ('navbar.php');
                     require_once('connexion.php');
 
-                    if (isset($_SESSION['mel'])) {
-                        $mel = $_SESSION['mel'];
-
-                        // Récupérer les livres réservés par l'utilisateur
-                        $stmt = $connexion->prepare(
-                            "SELECT l.titre, l.isbn13, l.anneeparution, l.detail, l.photo, e.nolivre 
-                             FROM emprunter e
-                             INNER JOIN livre l ON e.nolivre = l.nolivre
-                             WHERE e.mel = :mel"
-                        );
-                        $stmt->bindValue(':mel', $mel);
-                        $stmt->execute();
-                        $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    if (isset($_SESSION['mel']) && isset($_SESSION['panier'])) {
+                        $livres = $_SESSION['panier'];
                     }
                 ?>
                 <h1>Votre Panier</h1>
