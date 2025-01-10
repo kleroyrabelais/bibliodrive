@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // recupère l'email de la session si elle n'existe pas, on utilise une chaîne vide
 $email = $_SESSION['mel'] ?? '';
 
-// Vérifie si l'email contient '@admin.fr'
+// Vérifie si l'email contient '@admin.fr' strpos = stringposition
 if (strpos($email, '@admin.fr') !== false) {
     include 'creer_membre.html';
     include 'ajouter_livre.html';
