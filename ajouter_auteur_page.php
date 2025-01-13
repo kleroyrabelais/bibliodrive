@@ -1,10 +1,4 @@
 <?php
-// Démarre la session si ce n'est pas déjà fait
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-
 include 'connexion.php';
 
 // Récupérer les auteurs depuis la base de données
@@ -31,11 +25,10 @@ try {
         <div class="row">
             <div class="col-sm-9">
                 <?php require_once 'navbar.php';
-                    require_once 'ajouter_livre_form.php' ?>
+                    require_once 'ajouter_auteur_form.php' ?>
             </div>
             <div class="col-sm-3">
-                <?php require_once 'authentification.php';
-                 require_once 'ajouter_auteur_button.html' ?>
+                <?php require_once 'authentification.php'; ?>
             </div>
         </div>
     </div>

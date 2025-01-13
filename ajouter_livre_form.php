@@ -28,5 +28,5 @@
           <label for="photo" class="form-label">Image:</label>
           <input type="text" name="photo" class="form-control" id="photo" required>
         </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-primary">Ajouter livre</button><?php require_once 'ajouter_auteur_button.html' ?>
       </form>
