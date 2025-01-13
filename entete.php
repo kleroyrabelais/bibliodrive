@@ -25,7 +25,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="d-flex" action="pagededetail.php" method="GET">
+            <form class="d-flex" action="page_detail.php" method="GET">
                 <input class="form-control me-2" type="text" placeholder="Entrer le nom d'un Auteur" name="Auteur">
                 <button class="btn btn-light" type="submit">rechercher</button>
             </form>

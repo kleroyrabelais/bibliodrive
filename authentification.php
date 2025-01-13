@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") { //On prend de post exclusivement
     if (isset($_POST['mel']) && isset($_POST['motdepasse'])) {
 
         require_once 'connexion.php';
