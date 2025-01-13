@@ -1,5 +1,15 @@
 <?php
 include 'connexion.php';
+
+// Récupérer les auteurs depuis la base de données
+try {
+    $stmt = $connexion->prepare("SELECT noauteur, prenom, nom FROM auteur");
+    $stmt->execute();
+    $auteurs = $stmt->fetchAll(PDO::FETCH_OBJ);
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
+    die();
+}
 ?>
 <!DOCTYPE html>
 <html>
