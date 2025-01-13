@@ -5,6 +5,9 @@ REQUIS:
 -bug de réservation double
 -page admin spéciale et enlever entete et associer en href les bouton page création membre et ajouter livre
 -bug de la navbar qui ne retient pas le css dans pagededetail
+-Corrigé 
+    ~~-lesfetchall~~
+    -faire du trie dans les pages
 
 
 NON REQUIS:

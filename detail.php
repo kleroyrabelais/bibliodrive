@@ -16,7 +16,7 @@ if (isset($_GET["Auteur"]) && !empty($_GET["Auteur"])) {
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         
         $stmt->execute();
-        $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $livres = $stmt->setFetchMode(PDO::FETCH_OBJ);
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
         die();

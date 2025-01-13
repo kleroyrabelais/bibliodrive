@@ -11,7 +11,7 @@ include 'connexion.php';
 try {
     $stmt = $connexion->prepare("SELECT noauteur, prenom, nom FROM auteur");
     $stmt->execute();
-    $auteurs = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $auteurs = $stmt->setFetchMode(PDO::FETCH_OBJ);
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
     die();
@@ -34,8 +34,7 @@ try {
                     require_once 'ajouter_livre_form.php' ?>
             </div>
             <div class="col-sm-3">
-                <?php require_once 'authentification.php';
-                 require_once 'ajouter_auteur_button.html' ?>
+                <?php require_once 'authentification.php'; ?>
             </div>
         </div>
     </div>

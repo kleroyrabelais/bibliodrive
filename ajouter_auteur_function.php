@@ -1,9 +1,6 @@
 <?php
 include 'connexion.php';
-//Traitement du formulaire d'ajout de livre
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
-    $Nom = array("");
     $Nom = $_POST['Nom'];
     $Prenom = $_POST['Prenom'];
 
@@ -25,10 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Redirection après le traitement du formulaire
-        header("Location: ajouter_auteur_page.php");
+       // header("Location: ajouter_auteur_page.php"); 
         exit; // s'assurer que le script se termine afin de ne pas exécuter plus
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
     }
-}
 ?>
