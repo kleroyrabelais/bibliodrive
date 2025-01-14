@@ -27,7 +27,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="d-flex" action="detail_livre_page.php" method="GET">
                 <input class="form-control me-2" type="text" placeholder="Entrer le nom d'un Auteur" name="Auteur">
-                <button class="btn btn-light" type="submit">rechercher</button>
+                <button class="btn btn-light couleurVert" type="submit">rechercher</button>
             </form>
         </div>
         <a class="btn btn-primary" href="panier.php">panier</a>

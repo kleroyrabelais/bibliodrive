@@ -3,12 +3,20 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+require_once 'connexion.php';
+$stmt = $connexion->prepare(
+    "SELECT profil
+     FROM utilisateur"
+);
+$stmt->execute();
+$profil = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { //On prend de post exclusivement
+if ($profil['profil'] == 'admin') {
+    include 'page_admin.php';
+} else {{
+    include 'index.php';
+}
     if (isset($_POST['mel']) && isset($_POST['motdepasse'])) {
-
-        require_once 'connexion.php';
-
         // Récupère les valeurs envoyées via le formulaire
         $mel = $_POST['mel'];
         $motdepasse = $_POST['motdepasse'];
