@@ -22,8 +22,19 @@
     </link>
 </head>
 <body>
-    <?php
-        require_once 'authentification.php';
-    ?>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-9">
+        <?php
+
+        ?>
+      </div>
+      <div class="col-sm-3">
+        <?php  
+          require_once ('authentification.php')   
+        ?>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

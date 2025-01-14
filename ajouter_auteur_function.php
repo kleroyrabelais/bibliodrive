@@ -20,9 +20,6 @@ include 'connexion.php';
         } else {
             echo "Erreur: " . $stmt->errorInfo()[2];
         }
-
-        // Redirection après le traitement du formulaire
-       // header("Location: ajouter_auteur_page.php"); 
         exit; // s'assurer que le script se termine afin de ne pas exécuter plus
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
