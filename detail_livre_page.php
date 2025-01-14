@@ -29,11 +29,15 @@ if (isset($_GET["Auteur"]) && !empty($_GET["Auteur"])) {
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9">
-            <?php require_once 'navbar.php'; ?>
+            <?php 
+                require_once 'navbar.php'; 
+            ?>
             <h1>Détails des livres</h1>
-            <?php if (!empty($livres)): ?>
-                <ul>
-                    <?php
+            <?php
+                if (!empty($livres)): 
+            ?>
+            <ul>
+                <?php
                     $stmt = $connexion->prepare(
                         "SELECT l.titre, l.isbn13, l.anneeparution 
                          FROM livre l 
@@ -43,20 +47,29 @@ if (isset($_GET["Auteur"]) && !empty($_GET["Auteur"])) {
                     $stmt->bindValue(':auteur', $auteur);
                     $stmt->execute();
                     while ($livre = $stmt->fetch(PDO::FETCH_ASSOC)): //détails générale des livres
-                    ?>
-                        <li>
-                            <a href="livre_detail.php?isbn13=<?= $livre['isbn13'] ?>">
-                                <?= $livre['titre'] ?> (<?= $livre['anneeparution'] ?>)
-                            </a>
-                        </li>
-                    <?php endwhile; ?>
-                </ul>
-            <?php else: ?>
-                <p>Aucun livre trouvé pour cet auteur.</p>
-            <?php endif; ?>
+                ?>
+                <li>
+                    <a 
+                        href="livre_detail.php?isbn13=<?= $livre['isbn13'] ?>">
+                        <?= $livre['titre'] ?> (<?= $livre['anneeparution'] ?>)
+                    </a>
+                </li>
+                <?php 
+                    endwhile; 
+                ?>
+            </ul>
+            <?php 
+                else: 
+            ?>
+            <p>Aucun livre trouvé pour cet auteur.</p>
+            <?php 
+                endif; 
+            ?>
         </div>
         <div class="col-sm-3">
-            <?php require_once 'authentification.php'; ?>
+            <?php 
+                require_once 'authentification.php'; 
+            ?>
         </div>
     </div>
 </div>

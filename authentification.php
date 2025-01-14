@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //On prend de post exclusivement
 </head>
 <body>
     <!-- image d'entete affichée ici, visible en tout temps -->
-    <img src="image-entete.png" alt="entete" width="450">
+    <img src="image-entete.png" alt="entete" width="370">
     <?php
 
 // recupère l'email de la session si elle n'existe pas, on utilise une chaîne vide
